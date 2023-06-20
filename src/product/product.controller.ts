@@ -26,14 +26,14 @@ export class ProductController {
   createProduct(
     @Body(ValidationPipe) createProductDto: CreateProductDto,
   ): Promise<Product> {
-    return;
+    return this.productService.createProduct(createProductDto);
   }
 
   @Put('/:id/edit')
   updateProduct(
     @Param('id') id: string,
-    @Body(ValidationPipe) UpdateProductDto: UpdateProductDto,
+    @Body(ValidationPipe) updateProductDto: UpdateProductDto,
   ): Promise<Product> {
-    return;
+    return this.productService.updateProduct(id, updateProductDto);
   }
 }
