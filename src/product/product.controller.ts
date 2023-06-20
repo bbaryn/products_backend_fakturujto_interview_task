@@ -8,7 +8,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 
-import { Product } from './data/entity/product.schema';
+import { Product } from './data/schema/product.schema';
 import { CreateProductDto } from './dto/createProduct.dto';
 import { ProductService } from './data/services/product.service';
 import { UpdateProductDto } from './dto/updateProduct.dto';
@@ -19,7 +19,7 @@ export class ProductController {
 
   @Get()
   getProducts(): Promise<Product[]> {
-    return;
+    return this.productService.getProducts();
   }
 
   @Post('/add')

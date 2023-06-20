@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ProductRepository } from './data/dao/product.repository';
 import { ProductController } from './product.controller';
 import { ProductService } from './data/services/product.service';
-import { Product, ProductSchema } from './data/entity/product.schema';
+import { Product, ProductSchema } from './data/schema/product.schema';
 
 @Module({
   imports: [
