@@ -18,19 +18,19 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get()
-  getUsers(): Promise<Product[]> {
+  getProducts(): Promise<Product[]> {
     return;
   }
 
   @Post('/add')
-  createUser(
+  createProduct(
     @Body(ValidationPipe) createProductDto: CreateProductDto,
   ): Promise<Product> {
     return;
   }
 
   @Put('/:id/edit')
-  updateUser(
+  updateProduct(
     @Param('id') id: string,
     @Body(ValidationPipe) UpdateProductDto: UpdateProductDto,
   ): Promise<Product> {
