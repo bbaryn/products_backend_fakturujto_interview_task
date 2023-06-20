@@ -1,6 +1,6 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 
 import { CreateProductDto } from '../../dto/createProduct.dto';
 import { UpdateProductDto } from '../../dto/updateProduct.dto';
@@ -20,7 +20,7 @@ export class ProductRepository {
     try {
       return createdCat.save();
     } catch (error) {
-      throw new BadRequestException(error);
+      throw new BadRequestException();
     }
   }
 
@@ -31,9 +31,11 @@ export class ProductRepository {
       if (!product) {
         throw new NotFoundException();
       }
-      return this.productModel.findByIdAndUpdate(id, data);
+      await this.productModel.findByIdAndUpdate(id, data);
+
+      return this.productModel.findOne({ _id: id });
     } catch (error) {
-      throw new BadRequestException(error);
+      throw new BadRequestException();
     }
   }
 }

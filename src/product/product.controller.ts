@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  ValidationPipe,
+} from '@nestjs/common';
 
 import { Product } from './data/schema/product.schema';
 import { ProductService } from './data/services/product.service';

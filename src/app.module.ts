@@ -1,11 +1,15 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/products'),
+    ConfigModule.forRoot({ envFilePath: '.env' }),
+    MongooseModule.forRoot(
+      process.env.URL_DB,
+    ),
     ProductModule,
   ],
 })
