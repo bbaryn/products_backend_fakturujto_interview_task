@@ -3,6 +3,7 @@ import { Product } from '../schema/product.schema';
 import { Model } from 'mongoose';
 import { CreateProductDto } from '../../dto/createProduct.dto';
 import { UpdateProductDto } from 'src/product/dto/updateProduct.dto';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 export class ProductRepository {
   constructor(
@@ -15,16 +16,23 @@ export class ProductRepository {
   async createProduct(data: CreateProductDto): Promise<Product> {
     const createdCat = new this.productModel(data);
 
-    return createdCat.save();
+    try {
+      return createdCat.save();
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
   }
 
   async updateProduct(id: string, data: UpdateProductDto): Promise<Product> {
-    const product = await this.productModel.findOne({ _id: id });
+    try {
+      const product = await this.productModel.findOne({ _id: id });
 
-    if (!product) {
-      return;
+      if (!product) {
+        throw new NotFoundException();
+      }
+      return this.productModel.findByIdAndUpdate(id, data);
+    } catch (error) {
+      throw new BadRequestException(error);
     }
-
-    return this.productModel.findByIdAndUpdate(id, data);
   }
 }
