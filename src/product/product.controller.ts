@@ -1,16 +1,8 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Put,
-  Post,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, ValidationPipe } from '@nestjs/common';
 
 import { Product } from './data/schema/product.schema';
-import { CreateProductDto } from './dto/createProduct.dto';
 import { ProductService } from './data/services/product.service';
+import { CreateProductDto } from './dto/createProduct.dto';
 import { UpdateProductDto } from './dto/updateProduct.dto';
 
 @Controller('products')

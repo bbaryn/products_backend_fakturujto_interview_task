@@ -1,9 +1,10 @@
-import { InjectModel } from '@nestjs/mongoose';
-import { Product } from '../schema/product.schema';
-import { Model } from 'mongoose';
-import { CreateProductDto } from '../../dto/createProduct.dto';
-import { UpdateProductDto } from 'src/product/dto/updateProduct.dto';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+import { CreateProductDto } from '../../dto/createProduct.dto';
+import { UpdateProductDto } from '../../dto/updateProduct.dto';
+import { Product } from '../schema/product.schema';
 
 export class ProductRepository {
   constructor(

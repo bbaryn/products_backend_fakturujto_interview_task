@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { ProductRepository } from '../dao/product.repository';
-import { Product } from '../schema/product.schema';
+
 import { CreateProductDto } from '../../dto/createProduct.dto';
 import { UpdateProductDto } from '../../dto/updateProduct.dto';
+import { ProductRepository } from '../dao/product.repository';
+import { Product } from '../schema/product.schema';
 
 @Injectable()
 export class ProductService {
