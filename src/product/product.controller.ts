@@ -1,7 +1,9 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  HttpCode,
   Param,
   Post,
   Put,
@@ -35,5 +37,11 @@ export class ProductController {
     @Body(ValidationPipe) updateProductDto: UpdateProductDto,
   ): Promise<Product> {
     return this.productService.updateProduct(id, updateProductDto);
+  }
+
+  @Delete('/:id')
+  @HttpCode(204)
+  deleteProduct(@Param('id') id: string): Promise<void> {
+    return this.productService.deleteProduct(id);
   }
 }

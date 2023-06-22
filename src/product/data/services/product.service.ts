@@ -20,4 +20,8 @@ export class ProductService {
   updateProduct(id, data: UpdateProductDto): Promise<Product> {
     return this.productRepository.updateProduct(id, data);
   }
+
+  deleteProduct(id): Promise<void> {
+    return this.productRepository.deleteProduct(id);
+  }
 }

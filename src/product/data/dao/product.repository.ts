@@ -1,6 +1,6 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
+import { Model, StringExpressionOperatorReturningBoolean } from 'mongoose';
 
 import { CreateProductDto } from '../../dto/createProduct.dto';
 import { UpdateProductDto } from '../../dto/updateProduct.dto';
@@ -32,6 +32,23 @@ export class ProductRepository {
         throw new NotFoundException();
       }
       await this.productModel.findByIdAndUpdate(id, data);
+
+      return this.productModel.findOne({ _id: id });
+    } catch (error) {
+      throw new BadRequestException();
+    }
+  }
+
+  async deleteProduct(
+    id: StringExpressionOperatorReturningBoolean,
+  ): Promise<void> {
+    try {
+      const product = await this.productModel.findOne({ _id: id });
+
+      if (!product) {
+        throw new NotFoundException();
+      }
+      await this.productModel.findByIdAndDelete(id);
 
       return this.productModel.findOne({ _id: id });
     } catch (error) {
